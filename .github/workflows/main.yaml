@@ -8,6 +8,8 @@ on:
 
 jobs:
   build:
+    env:
+      REPOSITORY: ${{ secrets.DOCKER_USERNAME }}/firestore-proxy
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
@@ -26,4 +28,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/firestore-proxy:${{ github.ref_name }}
+          tags: ${{ env.REPOSITORY }}:${{ github.ref_name }}
